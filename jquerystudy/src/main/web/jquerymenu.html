@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Title</title>
+
+    <style type="text/css">
+    html, body, table {
+        font-family: arial;
+        font-size: 14px;
+    }
+    
+    html {
+        background: url(images/stom.gif);
+    }
+    
+    .tab .tab-menu {
+        height: 37px;
+        background: url(images/neck.gif);
+    }
+    
+    .tab .tab-menu ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .tab .tab-menu li {
+        margin: 6px 0px 0px;
+        padding: 0px 11px 0px 0px;
+        height: 25px;
+        float: left;
+        font-size: 14px;
+        font-weight: bold;
+        text-shadow: 0px 1px 1px white;
+    }
+    
+    .tab .tab-menu li a {
+        cursor: pointer;
+        height: 25px;
+        line-height: 25px;
+        padding: 0px 20px 0px 27px;
+        display: block; /* inline-block效果不好 */
+    }
+    
+    .tab .tab-menu li.over {
+        opacity: 0.6;
+    }
+    
+    .tab .tab-menu li.active {
+        opacity: 1.0;
+    }
+    
+    .tab .tab-menu li.active, .tab .tab-menu li.over {
+        background: url(images/nav-bg-r.gif) no-repeat center right;
+    }
+    
+    .tab .tab-menu li.active a, .tab .tab-menu li.over a {
+        color: white;
+        text-shadow: 0px 1px 1px black;
+        background: url(images/nav-bg-l.gif) no-repeat left center;
+    }
+    
+    .tab .tab-box {
+        min-height: 100px;
+        border: 1px solid #D3D8DF;
+        border-top: none;
+        background: white;
+    }
+    
+    .hide {
+        display: none;
+    }
+    </style>
+
+    <script src="jquery/jquery.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var $menuLis = $(".tab .tab-menu li");
+        $menuLis.hover(function() {
+            $(this).addClass("over");
+        }, function() {
+            $(this).removeClass("over");
+        }).click(function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            var index = $menuLis.index(this);
+            $(this).parent().parent().siblings(".tab-box")
+            .children("div").hide().eq(index).show();
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="tab-menu">
+            <ul>
+                <li class="active"><a>Home</a></li>
+                <li><a>Portfolio</a></li>
+                <li><a>Blog</a></li>
+                <li><a>About</a></li>
+                <li><a>Goodies</a></li>
+            </ul>
+        </div>
+        <div class="tab-box">
+            <div>Home</div>
+            <div class="hide">Portfolio</div>
+            <div class="hide">Blog</div>
+            <div class="hide">About</div>
+            <div class="hide">Goodies</div>
+        </div>
+    </div>
+</body>
+</html>
